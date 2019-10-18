@@ -25,7 +25,7 @@ var checks = []check{
 
 func main() {
 	for _, inFileName := range os.Args[1:] {
-		outFileName := inFileName + "." + newUUID()
+		outFileName := inFileName + "." + uuid.NewV4().String()
 		log.Printf("File %q", inFileName)
 
 		inFile, err := os.Open(inFileName)
@@ -105,12 +105,4 @@ func packageComment(fields []string) string {
 		"// Package %s comment should be of this form",
 		fields[2],
 	)
-}
-
-func newUUID() string {
-	id, err := uuid.NewV4()
-	if err != nil {
-		panic(err)
-	}
-	return id.String()
 }
